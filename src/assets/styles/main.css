@@ -1,0 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&family=Noto+Sans+TC:wght@100..900&display=swap");
+:root {
+  --font-primary: "Noto Sans TC", "Cabin", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: var(--font-primary) !important;
+}/*# sourceMappingURL=main.css.map */
