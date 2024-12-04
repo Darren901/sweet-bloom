@@ -58,10 +58,13 @@ export default {
       const api = `${import.meta.env.VITE_API}/admin/signin`
       try {
         this.isLoading = true
-        let response = await this.axios.post(api, this.user)
-        console.log(response)
-        this.$router.push('/dashboard/products')
-        this.$httpMessageState(response, '登入')
+        let res = await this.axios.post(api, this.user)
+        if (res.data.success) {
+          const { token, expired } = res.data
+          document.cookie = `myToken=${token}; expires=${new Date(expired)}`
+          this.$httpMessageState(res, '登入')
+          this.$router.push('/dashboard/products')
+        }
       } catch (e) {
         console.log(e)
       } finally {

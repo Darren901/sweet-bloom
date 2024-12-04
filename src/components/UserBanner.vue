@@ -1,7 +1,7 @@
 <template>
   <div
     class="d-flex justify-content-center align-items-center position-relative"
-    style="min-height: 400px"
+    style="min-height: 300px"
   >
     <div class="position-absolute title-img" :style="backgroundStyle"></div>
     <div style="padding: 5rem; background-color: rgba(255, 255, 255, 0.5); border-radius: 20px">

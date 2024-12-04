@@ -23,11 +23,11 @@ export default {
   },
   async created() {
     const token = document.cookie.replace(/(?:(?:^|.*;\s*)myToken\s*=\s*([^;]*).*$)|^.*$/, '$1')
-
     this.axios.defaults.headers.common.Authorization = token
     const api = `${import.meta.env.VITE_API}/api/user/check`
     try {
       let response = await this.axios.post(api)
+      console.log(response)
       if (!response.data.success) {
         this.$router.push('/login')
       }

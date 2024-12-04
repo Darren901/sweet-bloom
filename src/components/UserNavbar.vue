@@ -25,7 +25,7 @@
             <router-link class="nav-link" to="/">搶先優惠</router-link>
           </li>
           <li class="nav-item">
-            <router-link class="nav-link" to="/">我的訂單</router-link>
+            <router-link class="nav-link" to="/">訂單查詢</router-link>
           </li>
 
           <li class="nav-item">
@@ -34,7 +34,7 @@
               ><span
                 class="position-absolute top-5 start-100 translate-middle badge rounded-pill bg-primary text-light"
               >
-                3
+                {{ cartCount }}
                 <span class="visually-hidden">unread messages</span>
               </span></router-link
             >
@@ -46,11 +46,20 @@
 </template>
 
 <script>
+import cartStore from '@/stores/cartStore'
+import { mapState, mapActions } from 'pinia'
+
 export default {
   data() {
     return {
       setShadow: false,
     }
+  },
+  computed: {
+    ...mapState(cartStore, ['cart']),
+    cartCount() {
+      return this.cart?.carts?.length || 0
+    },
   },
   methods: {
     navShadow() {
@@ -58,6 +67,10 @@ export default {
         this.setShadow = window.scrollY > 100
       })
     },
+    ...mapActions(cartStore, ['getCart']),
+  },
+  created() {
+    this.getCart()
   },
   mounted() {
     window.addEventListener('scroll', this.navShadow)
@@ -81,7 +94,7 @@ export default {
 }
 
 .navbar-shrink {
-  padding: 0.5rem 0;
+  padding: 0.25rem 0;
   min-height: 60px;
 }
 
