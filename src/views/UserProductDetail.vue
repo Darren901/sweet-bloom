@@ -5,14 +5,16 @@
       <nav aria-label="breadcrumb ">
         <ol class="breadcrumb">
           <li class="breadcrumb-item">
-            <router-link class="text-decoration-none text-dark" to="/user/index">首頁</router-link>
+            <router-link class="text-decoration-none text-primary" to="/user/index"
+              >首頁</router-link
+            >
           </li>
           <li class="breadcrumb-item">
-            <router-link to="/user/products" class="text-decoration-none text-dark"
+            <router-link to="/user/products" class="text-decoration-none text-primary"
               >產品列表</router-link
             >
           </li>
-          <li class="breadcrumb-item active" aria-current="page">產品資訊</li>
+          <li class="breadcrumb-item active text-secondary" aria-current="page">產品資訊</li>
         </ol>
       </nav>
     </div>

@@ -7,10 +7,10 @@
     />
     <div class="container mt-md-5 mt-3 mb-5">
       <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-3">
           <UserProductCategories :categories="categories" @change-category="changeCategory" />
         </div>
-        <div class="col-md-8 mt-md-5 mt-3">
+        <div class="col-md-9 mt-md-5 mt-3">
           <div class="row">
             <div v-if="products.length === 0" class="col-12 text-center">
               <h3>此分類暫無商品</h3>

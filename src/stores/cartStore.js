@@ -17,6 +17,7 @@ export default defineStore('cartStore', {
         let res = await CartService.addToCart(id, qty)
         console.log(res)
         status.httpMessageState(res, '加入購物車')
+        this.getCart()
       } catch (e) {
         console.log(e)
       } finally {
@@ -34,6 +35,34 @@ export default defineStore('cartStore', {
         console.log(e)
       } finally {
         status.isLoading = false
+      }
+    },
+
+    async deleteOneProduct(id) {
+      status.cartLoadingItem = id
+      try {
+        let res = await CartService.deleteOneProductFromCart(id)
+        console.log(res)
+        status.httpMessageState(res, '刪除')
+        this.getCart()
+      } catch (e) {
+        console.log(e)
+      } finally {
+        status.cartLoadingItem = ''
+      }
+    },
+
+    async updateCartCount(id, qty) {
+      status.cartLoadingItem = id
+      try {
+        let res = await CartService.updateCartCount(id, qty)
+        console.log(res)
+        status.httpMessageState(res, '更新')
+        this.getCart()
+      } catch (e) {
+        console.log(e)
+      } finally {
+        status.cartLoadingItem = ''
       }
     },
   },

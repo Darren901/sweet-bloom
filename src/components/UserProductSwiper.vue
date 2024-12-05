@@ -126,7 +126,7 @@ a {
 
 :deep(.swiper-button-next),
 :deep(.swiper-button-prev) {
-  color: var(--bs-primary); /* 例如 #333 或 brown */
+  color: var(--bs-primary);
 }
 
 .card-img-top {

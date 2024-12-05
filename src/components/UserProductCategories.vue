@@ -47,5 +47,6 @@ export default {
 
 .sticky-top {
   top: 100px;
+  z-index: 1000;
 }
 </style>

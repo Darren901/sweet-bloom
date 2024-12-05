@@ -13,6 +13,18 @@ class CartService {
   getCart() {
     return axios.get(`${API_URL}/cart`)
   }
+  deleteOneProductFromCart(id) {
+    return axios.delete(`${API_URL}/cart/${id}`)
+  }
+
+  updateCartCount(id, qty) {
+    return axios.put(`${API_URL}/cart/${id}`, {
+      data: {
+        product_id: id,
+        qty: +qty,
+      },
+    })
+  }
 }
 
 export default new CartService()
