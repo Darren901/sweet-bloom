@@ -165,7 +165,7 @@
             <div class="d-flex justify-content-between mt-4">
               <template v-if="cart.final_total !== cart.total">
                 <p class="mb-0 h4 fw-bold text-success">優惠價</p>
-                <p class="mb-0 h4 fw-bold text-success">NT${{ cart.final_total }}</p>
+                <p class="mb-0 h4 fw-bold text-dark">NT${{ cart.final_total }}</p>
               </template>
               <template v-else>
                 <p class="mb-0 h4 fw-bold">總計</p>
@@ -200,7 +200,7 @@
         </div>
       </div>
     </div>
-    <UserProductSwiper @change-product="goProduct"></UserProductSwiper>
+    <UserProductSwiper @change-product="changeProduct"></UserProductSwiper>
   </div>
 </template>
 
@@ -211,6 +211,7 @@ import cartStore from '@/stores/cartStore'
 import { mapState, mapActions } from 'pinia'
 import CouponService from '@/services/coupon-service'
 import UserProductSwiper from '@/components/UserProductSwiper.vue'
+import changeProductMixins from '@/mixins/changeProductMixins'
 
 export default {
   data() {
@@ -218,6 +219,7 @@ export default {
       couponCode: '',
     }
   },
+  mixins: [changeProductMixins],
   methods: {
     ...mapActions(cartStore, ['getCart']),
     ...mapActions(cartStore, ['deleteOneProduct']),
@@ -227,6 +229,7 @@ export default {
         let res = await CouponService.useCoupon(this.couponCode)
         console.log(res)
         this.$httpMessageState(res, '套用優惠券')
+        this.couponCode = ''
         this.getCart()
       } catch (e) {
         console.log(e)

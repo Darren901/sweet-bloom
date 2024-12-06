@@ -13,7 +13,6 @@ export default defineStore('statusStore', {
       const { title, content, style = 'success' } = data
       this.messages.push({ style, title, content })
     },
-    // 新增處理 API 回應的方法
     httpMessageState(response, title = '更新') {
       if (response.data.success) {
         this.pushMessage({

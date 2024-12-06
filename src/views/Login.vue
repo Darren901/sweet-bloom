@@ -1,7 +1,7 @@
 <template>
   <Loading :active="isLoading"></Loading>
-  <div class="container mt-5">
-    <form class="row justify-content-center">
+  <div class="container d-flex justify-content-center align-items-center" style="min-height: 75vh">
+    <form class="row justify-content-center align-items-center w-100">
       <div class="col-md-6">
         <h1 class="mb-3 text-center">後臺管理</h1>
         <div class="mb-2">

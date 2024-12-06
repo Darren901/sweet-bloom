@@ -30,12 +30,14 @@
       >
         <SwiperSlide v-for="(product, index) in products" :key="index">
           <div class="card border-0 mb-4" @click.stop="$emit('change-product', product)">
-            <img :src="product.imageUrl" class="card-img-top rounded-0" alt="product image" />
+            <img :src="product.imageUrl" class="card-img-top rounded-0" />
             <div class="row pe-2">
               <div class="col-md-6">
                 <div class="card-body pt-0">
                   <h4 class="mb-0 mt-3">
-                    <a href="#">{{ product.title }}</a>
+                    <span href="#" style="text-wrap: nowrap; text-overflow: ellipsis">{{
+                      product.title
+                    }}</span>
                   </h4>
                   <p class="card-text mb-0">
                     NT${{ product.price }}
