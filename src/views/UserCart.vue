@@ -200,7 +200,7 @@
         </div>
       </div>
     </div>
-    <UserProductSwiper></UserProductSwiper>
+    <UserProductSwiper @change-product="goProduct"></UserProductSwiper>
   </div>
 </template>
 
@@ -231,6 +231,9 @@ export default {
       } catch (e) {
         console.log(e)
       }
+    },
+    goProduct(product) {
+      this.$router.push(`/user/product/${product.id}`)
     },
   },
   computed: {
