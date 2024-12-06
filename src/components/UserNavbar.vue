@@ -1,10 +1,15 @@
 <template>
+  <UserOrderModal
+    ref="orderModal"
+    v-model:error="error"
+    @search-order="searchOrder"
+  ></UserOrderModal>
   <nav
     class="navbar navbar-expand-lg bg-light navbar-light sticky-top"
     :class="{ 'nav-shadow': setShadow, 'navbar-shrink': setShadow }"
   >
     <div class="container">
-      <router-link class="navbar-brand text-primary" to="/user/index">Sugar Bloom</router-link>
+      <router-link class="navbar-brand text-primary" to="/user/index">Sweet Bloom</router-link>
       <button
         class="navbar-toggler"
         type="button"
@@ -22,10 +27,10 @@
             <router-link class="nav-link" to="/user/products">產品列表</router-link>
           </li>
           <li class="nav-item">
-            <router-link class="nav-link" to="/">搶先優惠</router-link>
+            <router-link class="nav-link" to="/">優惠券</router-link>
           </li>
           <li class="nav-item">
-            <router-link class="nav-link" to="/">訂單查詢</router-link>
+            <button class="nav-link" @click="openModal">查詢訂單</button>
           </li>
 
           <li class="nav-item">
@@ -48,11 +53,14 @@
 <script>
 import cartStore from '@/stores/cartStore'
 import { mapState, mapActions } from 'pinia'
+import UserOrderModal from './UserOrderModal.vue'
+import orderStore from '@/stores/orderStore'
 
 export default {
   data() {
     return {
       setShadow: false,
+      error: false,
     }
   },
   computed: {
@@ -67,7 +75,21 @@ export default {
         this.setShadow = window.scrollY > 100
       })
     },
+    openModal() {
+      this.$refs.orderModal.showModal()
+    },
+    async searchOrder(id) {
+      let res = await this.getOrder(id)
+      if (res.data.order !== null) {
+        this.$router.push(`/user/checkout/${id}`)
+        this.$refs.orderModal.hideModal()
+        this.error = false
+      } else {
+        this.error = true
+      }
+    },
     ...mapActions(cartStore, ['getCart']),
+    ...mapActions(orderStore, ['getOrder']),
   },
   created() {
     this.getCart()
@@ -79,6 +101,9 @@ export default {
   unmounted() {
     window.removeEventListener('scroll', this.navShadow)
   },
+  components: {
+    UserOrderModal,
+  },
 }
 </script>
 
@@ -88,7 +113,7 @@ export default {
 }
 
 .navbar {
-  padding: 1rem 0;
+  padding: 0.5rem 0;
   min-height: 80px;
   transition: all 0.3s ease;
 }
@@ -99,14 +124,15 @@ export default {
 }
 
 .navbar-brand {
-  font-size: 1.75rem;
+  font-family: 'Dancing Script', cursive !important;
+  font-size: 2rem;
   font-weight: 600;
   letter-spacing: 1px;
   transition: all 0.3s ease;
 }
 
 .navbar-shrink .navbar-brand {
-  font-size: 1.5rem;
+  font-size: 1.75rem;
 }
 
 .nav-link {

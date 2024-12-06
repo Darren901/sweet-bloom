@@ -159,7 +159,7 @@
           </button>
           <button
             type="button"
-            class="btn btn-primary"
+            class="btn btn-primary text-light"
             @click="$emit('update-product', tempProduct)"
           >
             確認

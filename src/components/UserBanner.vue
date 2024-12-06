@@ -5,7 +5,7 @@
   >
     <div class="position-absolute title-img" :style="backgroundStyle"></div>
     <div style="padding: 5rem; background-color: rgba(255, 255, 255, 0.5); border-radius: 20px">
-      <h2 class="fw-bold text-secondary">{{ title }}</h2>
+      <h2 class="fw-500 text-secondary">{{ title }}</h2>
     </div>
   </div>
 </template>

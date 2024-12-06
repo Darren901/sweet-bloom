@@ -6,7 +6,7 @@
           <h5>聯絡資訊</h5>
           <p>電話：(02) 2345-6789</p>
           <p>地址：台北市中山區幸福路123號</p>
-          <p>Email：sugarBloom@sugarBloom.com</p>
+          <p>Email：SweetBloom@gmail.com</p>
         </div>
         <div class="col-md-4">
           <h5>營業時間</h5>
@@ -23,7 +23,7 @@
         </div>
       </div>
       <hr class="my-4" />
-      <p class="text-center mb-0">© 2024 糖漾甜點工坊 版權所有</p>
+      <p class="text-center mb-0">© 2024 甜.綻 版權所有</p>
     </div>
   </div>
 </template>

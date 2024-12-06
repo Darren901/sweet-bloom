@@ -2,7 +2,7 @@
   <Loading :active="isLoading"></Loading>
   <UserBanner
     :title="'確認訂單'"
-    :imageUrl="'https://images.unsplash.com/photo-1728952387212-850473e6a0c8?q=80&w=2074&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'"
+    :imageUrl="'https://images.unsplash.com/photo-1519340333755-56e9c1d04579?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'"
   ></UserBanner>
   <div class="container mt-md-5 mt-3 mb-3">
     <div class="row flex-row justify-content-center p-3 g-md-5 g-3">
@@ -91,7 +91,7 @@
               >
               <button
                 type="submit"
-                class="btn btn-primary px-4 py-2"
+                class="btn btn-primary px-4 py-2 text-light"
                 :class="{ disabled: cart?.carts?.length === 0 }"
               >
                 送出訂單
@@ -110,7 +110,7 @@ import UserBanner from '@/components/UserBanner.vue'
 import statusStore from '@/stores/statusStore'
 import cartStore from '@/stores/cartStore'
 import { mapState, mapActions } from 'pinia'
-import orderService from '@/services/order-service'
+import orderStore from '@/stores/orderStore'
 import UserCheckTable from '@/components/UserCheckTable.vue'
 import UserProductSwiper from '@/components/UserProductSwiper.vue'
 import changeProductMixins from '@/mixins/changeProductMixins'
@@ -125,11 +125,10 @@ export default {
   mixins: [changeProductMixins],
   methods: {
     ...mapActions(cartStore, ['getCart']),
-    async handleSubmitOrder(e) {
-      e.preventDefault()
+    ...mapActions(orderStore, ['sendOrder']),
+    async handleSubmitOrder() {
       try {
-        let res = await orderService.sendOrder(this.user, this.message)
-        console.log(res.data.orderId)
+        let res = await this.sendOrder(this.user, this.message)
         this.user = {}
         this.message = ''
         this.$router.push(`/user/checkout/${res.data.orderId}`)
@@ -154,16 +153,6 @@ export default {
 </script>
 
 <style scoped>
-.form-control:focus {
-  border-color: var(--bs-primary);
-  box-shadow: 0 0 0 0.25rem rgba(var(--bs-primary-rgb), 0.25);
-}
-
-textarea.form-control:focus {
-  border-color: var(--bs-primary);
-  box-shadow: 0 0 0 0.25rem rgba(var(--bs-primary-rgb), 0.25);
-}
-
 .sticky-top {
   position: sticky;
   z-index: 1000;

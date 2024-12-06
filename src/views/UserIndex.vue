@@ -33,15 +33,15 @@
             >
               每一份甜點都是我們用心製作的成果， 嚴選食材、手工製作，為您獻上最純粹的甜蜜。
             </p>
-            <a
-              href="#products"
+            <router-link
+              to="/user/products"
               class="btn btn-primary btn-lg w-50 text-light"
               data-aos="fade-right"
               data-aos-delay="600"
               data-aos-duration="1500"
             >
               立即選購
-            </a>
+            </router-link>
           </div>
         </div>
 
@@ -76,10 +76,65 @@
               </div>
             </div>
           </div>
-          <hr />
+          <hr class="text-primary" />
+        </div>
+        <div class="bg-light">
+          <div class="container py-5">
+            <div class="row">
+              <div class="col-md-6">
+                <img
+                  src="https://images.unsplash.com/photo-1488474339733-16a5dd4ba5e6?q=80&w=2053&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                  alt=""
+                  class="img-fluid"
+                  data-aos="flip-left"
+                  data-aos-easing="ease-out-cubic"
+                  data-aos-duration="1000"
+                />
+              </div>
+              <div
+                class="col-md-4 m-auto text-center"
+                data-aos="fade-left"
+                data-aos-duration="1000"
+              >
+                <h4 class="mt-4">「每一口，都是幸福的滋味」</h4>
+                <p class="text-muted">
+                  我們專注於手工蛋糕的每一個細節，讓香甜與柔軟完美<span
+                    >交融，為你的每一天增添更多美好與甜蜜。</span
+                  >
+                </p>
+              </div>
+            </div>
+            <div class="row flex-row-reverse justify-content-between mt-4">
+              <div class="col-md-6">
+                <img
+                  src="https://plus.unsplash.com/premium_photo-1671212748162-d7bdb9d4f5ec?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                  alt=""
+                  class="img-fluid"
+                  data-aos="flip-right"
+                  data-aos-easing="ease-out-cubic"
+                  data-aos-duration="1000"
+                />
+              </div>
+              <div
+                class="col-md-4 m-auto text-center"
+                data-aos="fade-right"
+                data-aos-duration="1000"
+              >
+                <h4 class="mt-4">「品味生活，從這裡開始」</h4>
+                <p class="text-muted">
+                  無論是慶祝時刻還是平凡日常，我們的蛋糕都能成為最甜美<span
+                    >的陪伴，用心製作每一份驚喜與感動。</span
+                  >
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <UserProductCard></UserProductCard>
+        <div class="container p-md-4 p-0">
+          <p class="text-center product-title" data-aos="fade-up">SweetBloom</p>
+          <UserProductCard></UserProductCard>
+        </div>
       </div>
 
       <div class="empty-div py-5 d-flex align-items-center">
@@ -99,51 +154,6 @@
           </div>
         </div>
       </div>
-
-      <div class="bg-light">
-        <div class="container py-5">
-          <div class="row">
-            <div class="col-md-6">
-              <img
-                src="https://images.unsplash.com/photo-1488474339733-16a5dd4ba5e6?q=80&w=2053&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                alt=""
-                class="img-fluid"
-                data-aos="flip-left"
-                data-aos-easing="ease-out-cubic"
-                data-aos-duration="1000"
-              />
-            </div>
-            <div class="col-md-4 m-auto text-center" data-aos="fade-left" data-aos-duration="1000">
-              <h4 class="mt-4">「每一口，都是幸福的滋味」</h4>
-              <p class="text-muted">
-                我們專注於手工蛋糕的每一個細節，讓香甜與柔軟完美<span
-                  >交融，為你的每一天增添更多美好與甜蜜。</span
-                >
-              </p>
-            </div>
-          </div>
-          <div class="row flex-row-reverse justify-content-between mt-4">
-            <div class="col-md-6">
-              <img
-                src="https://plus.unsplash.com/premium_photo-1671212748162-d7bdb9d4f5ec?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                alt=""
-                class="img-fluid"
-                data-aos="flip-right"
-                data-aos-easing="ease-out-cubic"
-                data-aos-duration="1000"
-              />
-            </div>
-            <div class="col-md-4 m-auto text-center" data-aos="fade-right" data-aos-duration="1000">
-              <h4 class="mt-4">「品味生活，從這裡開始」</h4>
-              <p class="text-muted">
-                無論是慶祝時刻還是平凡日常，我們的蛋糕都能成為最甜美<span
-                  >的陪伴，用心製作每一份驚喜與感動。</span
-                >
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 </template>
@@ -157,7 +167,13 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+.product-title {
+  font-family: 'Dancing Script', cursive !important;
+  font-size: 4rem;
+  color: var(--bs-primary);
+}
+
 .empty-div {
   background-color: rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(3px);

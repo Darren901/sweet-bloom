@@ -106,7 +106,11 @@
           <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
             取消
           </button>
-          <button type="button" class="btn btn-primary" @click="$emit('update-paid', tempOrder)">
+          <button
+            type="button"
+            class="btn btn-primary text-light"
+            @click="$emit('update-paid', tempOrder)"
+          >
             確認
           </button>
         </div>

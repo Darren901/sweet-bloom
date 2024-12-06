@@ -4,7 +4,9 @@
     <h2>產品列表</h2>
   </div>
   <div class="text-end">
-    <button class="btn btn-primary" type="button" @click="openModal(true)">增加一個產品</button>
+    <button class="btn btn-primary text-light" type="button" @click="openModal(true)">
+      增加一個產品
+    </button>
   </div>
   <table class="table mt-4">
     <thead>

@@ -14,6 +14,10 @@ class OrderService {
   getOrder(id) {
     return axios.get(`${API_URL}/order/${id}`)
   }
+
+  payOrder(id) {
+    return axios.post(`${API_URL}/pay/${id}`)
+  }
 }
 
 export default new OrderService()

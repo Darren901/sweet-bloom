@@ -44,7 +44,7 @@
             </div>
             <h4 class="mb-3">您的購物車還是空的</h4>
             <p class="text-muted mb-4">趕快來挑選喜歡的商品吧！</p>
-            <router-link to="/user/products" class="btn btn-primary btn-lg px-5">
+            <router-link to="/user/products" class="btn btn-primary btn-lg px-5 text-light">
               開始購物
             </router-link>
           </div>
@@ -188,10 +188,11 @@
             />
             <div class="input-group-append">
               <button
-                class="btn btn-outline-none border-bottom rounded-0"
+                class="btn btn-outline-none border-bottom rounded-0 border-0"
                 type="button"
                 id="button-addon2"
                 @click="handleCoupon"
+                :disabled="couponCode === ''"
               >
                 <i class="bi bi-send text-primary"></i>
               </button>

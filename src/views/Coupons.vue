@@ -5,7 +5,7 @@
       <h2>優惠券</h2>
     </div>
     <div class="text-end mt-4">
-      <button class="btn btn-primary" @click="openModal(true)">建立新的優惠券</button>
+      <button class="btn btn-primary text-light" @click="openModal(true)">建立新的優惠券</button>
     </div>
     <div class="table-responsive">
       <table class="table mt-4">
