@@ -95,13 +95,13 @@
 
 <style lang="scss" scoped>
 .accordion-button:not(.collapsed) {
-  color: var(--bs-primary);
-  background-color: rgba(var(--bs-primary-rgb), 0.1);
+  color: var(--bs-secondary);
+  background-color: rgba(var(--bs-secondary-rgb), 0.1);
 }
 
 .accordion-button:focus {
-  border-color: var(--bs-primary);
-  box-shadow: 0 0 0 0.25rem rgba(var(--bs-primary-rgb), 0.25);
+  border-color: var(--bs-secondary);
+  box-shadow: 0 0 0 0.25rem rgba(var(--bs-secondary-rgb), 0.25);
 }
 
 .accordion-button:not(.collapsed)::after {
