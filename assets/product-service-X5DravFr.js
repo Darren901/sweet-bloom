@@ -1,0 +1,1 @@
+import{y as r}from"./index-CPswxAJw.js";const e="https://vue3-course-api.hexschool.io/api/darrenapi";class o{getProducts(t=1){return r.get(`${e}/products?page=${t}`)}getAllProducts(){return r.get(`${e}/products/all`)}getProduct(t){return r.get(`${e}/product/${t}`)}}const u=new o;export{u as p};
