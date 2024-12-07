@@ -200,7 +200,6 @@ export default {
       formData.append('file-to-upload', uploadFile)
       const api = `${import.meta.env.VITE_API}/api/${import.meta.env.VITE_PATH}/admin/upload`
       let res = await this.axios.post(api, formData)
-      console.log(res.data)
       this.tempProduct.imageUrl = res.data.imageUrl
     },
   },

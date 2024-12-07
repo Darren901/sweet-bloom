@@ -4,7 +4,7 @@
     :title="'訂單詳細'"
     :imageUrl="'https://images.unsplash.com/photo-1519340333755-56e9c1d04579?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'"
   ></UserBanner>
-  <div class="container mt-md-5 mt-3 mb-3">
+  <div class="container mt-md-5 mt-3 mb-3" v-if="order">
     <div class="row flex-row justify-content-center p-3 g-md-5 g-3">
       <div class="col-md-5">
         <h5 class="text-start text-dark" v-if="!order?.is_paid">訂單已送出</h5>

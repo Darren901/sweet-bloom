@@ -61,7 +61,7 @@
   </div>
   <OrderModal :order="tempOrder" ref="orderModal" @update-paid="updatePaid"></OrderModal>
   <DelModal :item="tempOrder" ref="delModal" @delete-product="delOrder"></DelModal>
-  <Pagination :pages="pagination" @emit-pages="getOrders"></Pagination>
+  <Pagination :pages="pagination" @change-page="getOrders"></Pagination>
 </template>
 <script>
 import DelModal from '../components/DeleteModal.vue'
@@ -93,7 +93,6 @@ export default {
         this.orders = response.data.orders
         this.pagination = response.data.pagination
         this.isLoading = false
-        console.log(response)
       })
     },
     openModal(isNew, item) {
@@ -125,7 +124,6 @@ export default {
       const url = `${import.meta.env.VITE_API}/api/${import.meta.env.VITE_PATH}/admin/order/${this.tempOrder.id}`
       this.isLoading = true
       this.$http.delete(url).then((response) => {
-        console.log(response)
         const delComponent = this.$refs.delModal
         delComponent.hideModal()
         this.getOrders(this.currentPage)

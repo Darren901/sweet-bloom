@@ -1,6 +1,6 @@
 <template>
   <Loading :active="isLoading"></Loading>
-  <div class="container">
+  <div class="container" v-if="product">
     <div class="mt-5 ps-1">
       <nav aria-label="breadcrumb ">
         <ol class="breadcrumb">
@@ -11,7 +11,7 @@
           </li>
           <li class="breadcrumb-item">
             <router-link to="/user/products" class="text-decoration-none text-primary"
-              >產品列表</router-link
+              >所有商品</router-link
             >
           </li>
           <li class="breadcrumb-item active text-secondary" aria-current="page">產品資訊</li>
@@ -35,8 +35,8 @@
         </p>
         <p class="fs-5 text-primary">{{ product.content }}</p>
         <div class="d-flex justify-content-between mb-3">
-          <del class="fs-6">原價: NT${{ product.origin_price }}</del>
-          <span class="fs-3">NT${{ product.price }}</span>
+          <del class="fs-6">原價: NT${{ this.$filters.currency(product.origin_price) }}</del>
+          <span class="fs-3">NT${{ this.$filters.currency(product.price) }}</span>
         </div>
 
         <div class="row mt-5">
@@ -69,8 +69,8 @@
             </div>
           </div>
           <div class="col-6">
-            <a href="#" class="text-primary float-end">
-              <i class="bi bi-heart fs-4"></i>
+            <a href="#" class="text-primary float-end" @click.stop="toggleFavorite(product)">
+              <i :class="('bi ', isFavorite ? 'bi-heart-fill fs-4' : 'bi-heart fs-4')"></i>
             </a>
           </div>
         </div>
@@ -110,6 +110,7 @@ import UserProductSwiper from '@/components/UserProductSwiper.vue'
 import productService from '@/services/product-service'
 import statusStore from '@/stores/statusStore'
 import cartStore from '@/stores/cartStore'
+import favoritesStore from '@/stores/favoritesStore'
 import { mapState, mapActions } from 'pinia'
 
 export default {
@@ -122,6 +123,10 @@ export default {
   },
   computed: {
     ...mapState(statusStore, ['cartLoadingItem']),
+    ...mapState(favoritesStore, ['favorites']),
+    isFavorite() {
+      return this.favorites.some((item) => item.id === this.product.id)
+    },
   },
   components: {
     UserProductAccordion,
@@ -129,6 +134,7 @@ export default {
   },
   methods: {
     ...mapActions(cartStore, ['addToCart']),
+    ...mapActions(favoritesStore, ['toggleFavorite']),
     async getProduct() {
       this.isLoading = true
       const id = this.$route.params.productId
@@ -152,3 +158,9 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+.bi-heart:hover {
+  color: #ffb5b5;
+}
+</style>

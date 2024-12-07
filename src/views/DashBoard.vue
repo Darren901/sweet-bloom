@@ -27,7 +27,6 @@ export default {
     const api = `${import.meta.env.VITE_API}/api/user/check`
     try {
       let response = await this.axios.post(api)
-      console.log(response)
       if (!response.data.success) {
         this.$router.push('/login')
       }

@@ -79,7 +79,6 @@ export default {
         this.isLoading = true
         let response = await this.axios.get(api)
         if (response.data.success) {
-          console.log(response.data)
           this.products = response.data.products
           this.pagination = response.data.pagination
         }
@@ -109,7 +108,6 @@ export default {
       }
       try {
         let res = await this.axios[httpMethod](api, { data: item })
-        console.log(res)
         modalComponent.hideModal()
         this.$httpMessageState(res, '更新')
         this.getProducts(this.pagination.current_page)
@@ -122,7 +120,6 @@ export default {
       let api = `${import.meta.env.VITE_API}/api/${import.meta.env.VITE_PATH}/admin/product/${item.id}`
       try {
         let res = await this.axios.delete(api)
-        console.log(res)
         deleteModal.hideModal()
         this.$httpMessageState(res, '刪除')
         this.getProducts(this.pagination.current_page)

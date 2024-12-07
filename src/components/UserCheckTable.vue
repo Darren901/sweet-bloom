@@ -15,10 +15,12 @@
           </div>
 
           <div v-if="item.coupon">
-            <del class="mb-0 text-muted">NT${{ item.total }}</del>
-            <p class="mb-0 text-success">NT${{ item.final_total }}</p>
+            <del class="mb-0 text-muted">NT${{ this.$filters.currency(item.total) }}</del>
+            <p class="mb-0 text-success">
+              NT${{ this.$filters.currency(item.final_total.toFixed(0)) }}
+            </p>
           </div>
-          <p v-else class="mb-0">NT${{ item.total }}</p>
+          <p v-else class="mb-0">NT${{ this.$filters.currency(item.total) }}</p>
         </div>
       </div>
     </div>
@@ -28,10 +30,10 @@
         <tr>
           <th class="border-0 px-0 pt-4 font-weight-normal">小計</th>
           <td class="text-end border-0 px-0 pt-4" v-if="cart.total === cart.final_total">
-            <span>NT${{ cart.total }}</span>
+            <span>NT${{ this.$filters.currency(cart.total) }}</span>
           </td>
           <td class="text-end border-0 px-0 pt-4" v-else>
-            <del>NT${{ cart.total }}</del>
+            <del>NT${{ this.$filters.currency(cart.total) }}</del>
           </td>
         </tr>
         <tr>
@@ -43,11 +45,11 @@
     <div class="d-flex justify-content-between mt-4">
       <template v-if="cart.total === cart.final_total">
         <p class="mb-0 h4 fw-bold">總計</p>
-        <p class="mb-0 h4 fw-bold">NT${{ cart.total }}</p>
+        <p class="mb-0 h4 fw-bold">NT${{ this.$filters.currency(cart.total) }}</p>
       </template>
       <template v-else>
         <p class="mb-0 h4 fw-bold text-success">優惠價</p>
-        <p class="mb-0 h4 fw-bold">NT${{ cart.final_total }}</p>
+        <p class="mb-0 h4 fw-bold">NT${{ this.$filters.currency(cart.final_total.toFixed(0)) }}</p>
       </template>
     </div>
   </div>

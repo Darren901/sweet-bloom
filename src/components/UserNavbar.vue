@@ -4,12 +4,15 @@
     v-model:error="error"
     @search-order="searchOrder"
   ></UserOrderModal>
+  <UserCouponModal ref="couponModal"></UserCouponModal>
   <nav
     class="navbar navbar-expand-lg bg-light navbar-light sticky-top"
     :class="{ 'nav-shadow': setShadow, 'navbar-shrink': setShadow }"
   >
     <div class="container">
-      <router-link class="navbar-brand text-primary" to="/user/index">Sweet Bloom</router-link>
+      <router-link class="navbar-brand text-primary" to="/user/index" @click="closeMenu"
+        >Sweet Bloom</router-link
+      >
       <button
         class="navbar-toggler"
         type="button"
@@ -21,23 +24,50 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto align-items-center">
           <li class="nav-item">
-            <a class="nav-link" href="#">關於我們</a>
+            <router-link class="nav-link" to="/user/aboutus" @click="closeMenu"
+              >關於我們</router-link
+            >
           </li>
           <li class="nav-item">
-            <router-link class="nav-link" to="/user/products">產品列表</router-link>
+            <router-link class="nav-link" to="/user/products" @click="closeMenu"
+              >所有商品</router-link
+            >
           </li>
           <li class="nav-item">
-            <router-link class="nav-link" to="/">優惠券</router-link>
+            <button class="nav-link" @click="(this.$refs.couponModal.showModal(), closeMenu())">
+              優惠活動
+            </button>
           </li>
           <li class="nav-item">
-            <button class="nav-link" @click="openModal">查詢訂單</button>
+            <button class="nav-link" @click="(this.$refs.orderModal.showModal(), closeMenu())">
+              訂單查詢
+            </button>
+          </li>
+          <li class="nav-item">
+            <router-link
+              class="nav-link text-primary position-relative"
+              to="/user/favorites"
+              @click="closeMenu"
+              ><i :class="('bi', isFavorite ? 'bi-heart-fill' : 'bi-heart ')"></i
+              ><span
+                class="position-absolute start-100 translate-middle badge rounded-pill bg-primary text-light"
+                v-if="isFavorite"
+              >
+                {{ favorites.length }}
+                <span class="visually-hidden">unread messages</span>
+              </span></router-link
+            >
           </li>
 
           <li class="nav-item">
-            <router-link class="nav-link position-relative" to="/user/cart"
+            <router-link
+              class="nav-link position-relative ms-0 text-primary"
+              to="/user/cart"
+              @click="closeMenu"
               ><i class="bi bi-cart fs-5"></i
               ><span
-                class="position-absolute top-5 start-100 translate-middle badge rounded-pill bg-primary text-light"
+                class="position-absolute start-100 translate-middle badge rounded-pill bg-primary text-light"
+                v-if="cartCount > 0"
               >
                 {{ cartCount }}
                 <span class="visually-hidden">unread messages</span>
@@ -54,7 +84,9 @@
 import cartStore from '@/stores/cartStore'
 import { mapState, mapActions } from 'pinia'
 import UserOrderModal from './UserOrderModal.vue'
+import UserCouponModal from './UserCouponModal.vue'
 import orderStore from '@/stores/orderStore'
+import favoritesStore from '@/stores/favoritesStore'
 
 export default {
   data() {
@@ -68,15 +100,16 @@ export default {
     cartCount() {
       return this.cart?.carts?.length || 0
     },
+    ...mapState(favoritesStore, ['favorites']),
+    isFavorite() {
+      return this.favorites.length > 0
+    },
   },
   methods: {
     navShadow() {
       requestAnimationFrame(() => {
         this.setShadow = window.scrollY > 100
       })
-    },
-    openModal() {
-      this.$refs.orderModal.showModal()
     },
     async searchOrder(id) {
       let res = await this.getOrder(id)
@@ -86,6 +119,12 @@ export default {
         this.error = false
       } else {
         this.error = true
+      }
+    },
+    closeMenu() {
+      const navbarCollapse = document.getElementById('navbarNav')
+      if (navbarCollapse && navbarCollapse.classList.contains('show')) {
+        document.querySelector('.navbar-toggler').click()
       }
     },
     ...mapActions(cartStore, ['getCart']),
@@ -103,6 +142,7 @@ export default {
   },
   components: {
     UserOrderModal,
+    UserCouponModal,
   },
 }
 </script>

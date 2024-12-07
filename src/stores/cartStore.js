@@ -15,7 +15,6 @@ export default defineStore('cartStore', {
       status.cartLoadingItem = id
       try {
         let res = await CartService.addToCart(id, qty)
-        console.log(res)
         status.httpMessageState(res, '加入購物車')
         this.getCart()
       } catch (e) {
@@ -29,7 +28,6 @@ export default defineStore('cartStore', {
       status.isLoading = true
       try {
         let res = await CartService.getCart()
-        console.log(res.data)
         this.cart = res.data.data
       } catch (e) {
         console.log(e)
@@ -42,7 +40,6 @@ export default defineStore('cartStore', {
       status.cartLoadingItem = id
       try {
         let res = await CartService.deleteOneProductFromCart(id)
-        console.log(res)
         status.httpMessageState(res, '刪除')
         this.getCart()
       } catch (e) {
@@ -56,7 +53,6 @@ export default defineStore('cartStore', {
       status.cartLoadingItem = id
       try {
         let res = await CartService.updateCartCount(id, qty)
-        console.log(res)
         status.httpMessageState(res, '更新')
         this.getCart()
       } catch (e) {

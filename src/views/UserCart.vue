@@ -15,7 +15,7 @@
           </li>
           <li class="breadcrumb-item">
             <router-link to="/user/products" class="text-decoration-none text-primary"
-              >產品列表</router-link
+              >所有商品</router-link
             >
           </li>
           <li class="breadcrumb-item active text-secondary" aria-current="page">購物車</li>
@@ -118,8 +118,10 @@
                 </td>
                 <td v-if="item.total === item.final_total">NT${{ item.total }}</td>
                 <td v-else>
-                  <del>NT${{ item.total }} </del
-                  ><span class="text-success d-block">NT${{ item.final_total }}</span>
+                  <del>NT${{ this.$filters.currency(item.total) }} </del
+                  ><span class="text-success d-block"
+                    >NT${{ this.$filters.currency(item.final_total.toFixed(0)) }}</span
+                  >
                 </td>
                 <td>
                   <button
@@ -152,9 +154,11 @@
                   <td class="border-0 px-0 pt-4 text-start fw-bold">小計</td>
 
                   <td class="border-0 px-0 pt-4 text-end" v-if="cart.final_total !== cart.total">
-                    <del>NT${{ cart.total }}</del>
+                    <del>NT${{ this.$filters.currency(cart.total) }}</del>
                   </td>
-                  <td class="border-0 px-0 pt-4 text-end" v-else>NT${{ cart.total }}</td>
+                  <td class="border-0 px-0 pt-4 text-end" v-else>
+                    NT${{ this.$filters.currency(cart.total) }}
+                  </td>
                 </tr>
                 <tr>
                   <td class="border-0 px-0 text-start fw-bold">付款方式</td>
@@ -165,11 +169,13 @@
             <div class="d-flex justify-content-between mt-4">
               <template v-if="cart.final_total !== cart.total">
                 <p class="mb-0 h4 fw-bold text-success">優惠價</p>
-                <p class="mb-0 h4 fw-bold text-dark">NT${{ cart.final_total }}</p>
+                <p class="mb-0 h4 fw-bold text-dark">
+                  NT${{ this.$filters.currency(cart.final_total.toFixed(0)) }}
+                </p>
               </template>
               <template v-else>
                 <p class="mb-0 h4 fw-bold">總計</p>
-                <p class="mb-0 h4 fw-bold">NT${{ cart.final_total }}</p>
+                <p class="mb-0 h4 fw-bold">NT${{ this.$filters.currency(cart.final_total) }}</p>
               </template>
             </div>
             <router-link
@@ -228,16 +234,12 @@ export default {
     async handleCoupon() {
       try {
         let res = await CouponService.useCoupon(this.couponCode)
-        console.log(res)
         this.$httpMessageState(res, '套用優惠券')
         this.couponCode = ''
         this.getCart()
       } catch (e) {
         console.log(e)
       }
-    },
-    goProduct(product) {
-      this.$router.push(`/user/product/${product.id}`)
     },
   },
   computed: {

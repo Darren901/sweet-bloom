@@ -23,7 +23,12 @@
         </div>
       </div>
       <hr class="my-4" />
-      <p class="text-center mb-0">© 2024 甜.綻 版權所有</p>
+      <p class="text-center mb-0">
+        © 2024 甜．綻 甜點工作坊 版權所有
+        <router-link class="float-end text-light text-decoration-none" to="/login"
+          >管理員登入</router-link
+        >
+      </p>
     </div>
   </div>
 </template>

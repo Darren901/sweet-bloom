@@ -1,8 +1,11 @@
 <template>
   <Loading :active="isLoading"></Loading>
+
+  <UserCouponModal ref="couponModal" class="bounce"></UserCouponModal>
+
   <div>
     <UserBanner
-      :title="'產品列表'"
+      :title="'所有商品'"
       :image-url="'https://images.unsplash.com/photo-1514077583608-aedd9ec18c40?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'"
     />
     <div class="container mt-md-5 mt-3 mb-5">
@@ -27,6 +30,7 @@
 
 <script>
 import UserBanner from '@/components/UserBanner.vue'
+import UserCouponModal from '@/components/UserCouponModal.vue'
 import UserProductCard from '@/components/UserProductCard.vue'
 import UserProductCategories from '@/components/UserProductCategories.vue'
 import ProductService from '@/services/product-service'
@@ -36,6 +40,7 @@ export default {
     UserBanner,
     UserProductCategories,
     UserProductCard,
+    UserCouponModal,
   },
   data() {
     return {
@@ -70,9 +75,29 @@ export default {
       return [...new Set(this.originalProducts.map((product) => product.category))]
     },
   },
-
   async created() {
     await this.getProducts()
   },
+  mounted() {
+    this.$refs.couponModal.showModal()
+  },
 }
 </script>
+
+<style scoped>
+.bounce {
+  animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+</style>

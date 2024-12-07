@@ -40,9 +40,9 @@
                     }}</span>
                   </h4>
                   <p class="card-text mb-0">
-                    NT${{ product.price }}
+                    NT${{ this.$filters.currency(product.price) }}
                     <span class="text-muted">
-                      <del>NT${{ product.origin_price }}</del>
+                      <del>NT${{ this.$filters.currency(product.origin_price) }}</del>
                     </span>
                   </p>
                 </div>

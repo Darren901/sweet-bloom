@@ -66,6 +66,14 @@ const router = createRouter({
           component: () => import('../views/UserOrderView.vue'),
         },
         {
+          path: 'favorites',
+          component: () => import('../views/UserFavorites.vue'),
+        },
+        {
+          path: 'aboutus',
+          component: () => import('../views/UserAboutUs.vue'),
+        },
+        {
           path: ':pathMatch(.*)*',
           component: () => import('../views/UserNotFound.vue'),
         },

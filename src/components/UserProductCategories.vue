@@ -1,6 +1,6 @@
 <template>
   <div class="sticky-top">
-    <h4 class="text-primary">產品分類</h4>
+    <h4 class="text-primary">商品分類</h4>
     <hr />
     <ul class="list-group">
       <li class="list-group-item p-3">

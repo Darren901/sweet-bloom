@@ -13,6 +13,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js'
 import './assets/styles/main.scss'
 import 'aos/dist/aos.css'
 import AOS from 'aos'
+import Swal from 'sweetalert2'
 
 import App from './App.vue'
 import router from './router'
@@ -31,6 +32,8 @@ defineRule('email', email)
 defineRule('min', min)
 defineRule('max', max)
 defineRule('regex', regex)
+
+window.Swal = Swal
 
 configure({
   generateMessage: localize({ zh_TW: zhTW }),

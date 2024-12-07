@@ -6,12 +6,12 @@
         <a href="#" class="text-decoration-none text-dark">{{ product.title }}</a>
       </h5>
       <p class="card-text mb-3 mt-1">
-        NT${{ product.price }}
+        NT${{ this.$filters.currency(product.price) }}
         <span v-if="product.origin_price" class="text-muted">
-          <del>NT${{ product.origin_price }}</del>
+          <del>NT${{ this.$filters.currency(product.origin_price) }}</del>
         </span>
-        <a href="#" class="text-primary float-end">
-          <i class="bi bi-heart"></i>
+        <a class="text-primary float-end" @click.stop="toggleFavorite(product)">
+          <i :class="['bi', isFavorite ? 'bi-heart-fill' : 'bi-heart']"></i>
         </a>
       </p>
       <button
@@ -34,6 +34,7 @@
 
 <script>
 import cartStore from '@/stores/cartStore'
+import favoritesStore from '@/stores/favoritesStore'
 import statusStore from '@/stores/statusStore'
 import { mapActions, mapState } from 'pinia'
 
@@ -49,9 +50,14 @@ export default {
       this.$router.push(`product/${this.product.id}`)
     },
     ...mapActions(cartStore, ['addToCart']),
+    ...mapActions(favoritesStore, ['toggleFavorite']),
   },
   computed: {
     ...mapState(statusStore, ['cartLoadingItem']),
+    ...mapState(favoritesStore, ['favorites']),
+    isFavorite() {
+      return this.favorites.some((item) => item.id === this.product.id)
+    },
   },
 }
 </script>
@@ -64,5 +70,9 @@ export default {
 
 .card {
   cursor: pointer;
+}
+
+.bi-heart:hover {
+  color: #ffb5b5;
 }
 </style>

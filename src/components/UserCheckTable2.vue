@@ -1,6 +1,6 @@
 <template>
-  <div class="border p-4 mb-4" v-if="order && order.products">
-    <div class="d-flex mb-3" v-for="item in order.products">
+  <div class="border p-4 mb-4" v-if="order?.products">
+    <div class="d-flex mb-3" v-for="item in order.products" :key="item.id">
       <img
         :src="item.product.imageUrl"
         alt=""
@@ -15,10 +15,10 @@
           </div>
 
           <div v-if="item.coupon">
-            <del class="mb-0 text-muted">NT${{ item.total }}</del>
-            <p class="mb-0 text-success">NT${{ item.final_total }}</p>
+            <del class="mb-0 text-muted">NT${{ formatPrice(item.total) }}</del>
+            <p class="mb-0 text-success">NT${{ formatPrice(item.final_total) }}</p>
           </div>
-          <p v-else class="mb-0">NT${{ item.total }}</p>
+          <p v-else class="mb-0">NT${{ formatPrice(item.total) }}</p>
         </div>
       </div>
     </div>
@@ -33,13 +33,27 @@
     </table>
     <div class="d-flex justify-content-between mt-4">
       <p class="mb-0 h4 fw-bold">總計</p>
-      <p class="mb-0 h4 fw-bold">NT${{ order.total }}</p>
+      <p class="mb-0 h4 fw-bold">NT${{ formatPrice(order?.total) }}</p>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  props: ['order'],
+  props: {
+    order: {
+      type: Object,
+      default: () => ({
+        products: [],
+        total: 0,
+      }),
+    },
+  },
+  methods: {
+    formatPrice(price) {
+      if (!price) return '0'
+      return this.$filters.currency(Number(price).toFixed(0))
+    },
+  },
 }
 </script>

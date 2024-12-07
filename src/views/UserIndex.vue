@@ -7,18 +7,20 @@
     />
     <div class="content-wrapper">
       <div class="bg-light">
-        <div class="position-relative mb-3" style="height: 75vh">
+        <div class="position-relative mb-3" style="height: 85vh">
           <img
             src="/images/cake.png"
             alt="甜點特寫"
             style="height: 100%; width: 100%; object-fit: cover; object-position: right"
+            data-aos="fade-down"
+            data-aos-duration="1500"
           />
           <div
-            class="position-absolute top-50 translate-middle-y p-5 ms-5 text-dark bg-light bg-opacity-75"
-            style="max-width: 600px"
+            class="position-absolute top-50 translate-middle-y p-5 ms-md-5 text-dark bg-light bg-opacity-75 rounded-4"
+            style="max-width: 600px; left: 5%"
           >
             <h1
-              class="display-4 fw-normal mb-4 t"
+              class="display-5 fw-normal mb-4"
               data-aos="fade-right"
               data-aos-delay="100"
               data-aos-duration="1500"
@@ -45,7 +47,7 @@
           </div>
         </div>
 
-        <div class="container my-md-5 pt-md-5">
+        <div class="container my-md-5 pt-md-5 pt-4">
           <div class="row">
             <div class="col-md-3 col-6" data-aos="zoom-in" data-aos-duration="500">
               <div class="text-center">
@@ -85,7 +87,7 @@
                 <img
                   src="https://images.unsplash.com/photo-1488474339733-16a5dd4ba5e6?q=80&w=2053&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                   alt=""
-                  class="img-fluid"
+                  class="img-fluid rounded-4 shadow"
                   data-aos="flip-left"
                   data-aos-easing="ease-out-cubic"
                   data-aos-duration="1000"
@@ -109,7 +111,7 @@
                 <img
                   src="https://plus.unsplash.com/premium_photo-1671212748162-d7bdb9d4f5ec?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                   alt=""
-                  class="img-fluid"
+                  class="img-fluid rounded-4 shadow"
                   data-aos="flip-right"
                   data-aos-easing="ease-out-cubic"
                   data-aos-duration="1000"
@@ -130,13 +132,7 @@
             </div>
           </div>
         </div>
-
-        <div class="container p-md-4 p-0">
-          <p class="text-center product-title" data-aos="fade-up">SweetBloom</p>
-          <UserProductCard></UserProductCard>
-        </div>
       </div>
-
       <div class="empty-div py-5 d-flex align-items-center">
         <div class="container">
           <div class="row justify-content-center">
@@ -154,15 +150,21 @@
           </div>
         </div>
       </div>
+      <div class="bg-light">
+        <div class="container p-md-4 p-3">
+          <p class="text-center product-title" data-aos="fade-up">SweetBloom</p>
+          <UserProductCaousel></UserProductCaousel>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import UserProductCard from '@/components/UserProductCaousel.vue'
+import UserProductCaousel from '@/components/UserProductCaousel.vue'
 export default {
   components: {
-    UserProductCard,
+    UserProductCaousel,
   },
 }
 </script>
