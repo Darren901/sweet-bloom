@@ -69,7 +69,11 @@
             </div>
           </div>
           <div class="col-6">
-            <a href="#" class="text-primary float-end" @click.stop="toggleFavorite(product)">
+            <a
+              class="text-primary float-end"
+              @click.prevent.stop="toggleFavorite(product)"
+              style="cursor: pointer"
+            >
               <i :class="('bi ', isFavorite ? 'bi-heart-fill fs-4' : 'bi-heart fs-4')"></i>
             </a>
           </div>

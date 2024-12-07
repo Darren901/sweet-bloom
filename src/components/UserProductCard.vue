@@ -10,7 +10,7 @@
         <span v-if="product.origin_price" class="text-muted">
           <del>NT${{ this.$filters.currency(product.origin_price) }}</del>
         </span>
-        <a class="text-primary float-end" @click.stop="toggleFavorite(product)">
+        <a class="text-primary float-end" @click.prevent.stop="toggleFavorite(product)">
           <i :class="['bi', isFavorite ? 'bi-heart-fill' : 'bi-heart']"></i>
         </a>
       </p>
