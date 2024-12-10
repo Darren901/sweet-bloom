@@ -64,7 +64,7 @@
               class="nav-link position-relative ms-0 text-primary"
               to="/user/cart"
               @click="closeMenu"
-              ><i class="bi bi-cart fs-5"></i
+              ><i :class="('bi ', cartCount > 0 ? 'bi-cart-fill fs-5' : 'bi-cart fs-5')"></i
               ><span
                 class="position-absolute start-100 translate-middle badge rounded-pill bg-primary text-light"
                 v-if="cartCount > 0"

@@ -3,7 +3,7 @@
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
       <router-link class="navbar-brand text-primary" to="/dashboard/products"
-        >Sugar Bloom</router-link
+        >Sweet Bloom</router-link
       >
       <button
         class="navbar-toggler"
@@ -56,3 +56,10 @@ export default {
   },
 }
 </script>
+
+<style>
+.navbar-brand {
+  font-family: 'Dancing Script', cursive !important;
+  font-size: 2rem;
+}
+</style>
